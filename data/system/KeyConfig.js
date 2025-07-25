@@ -81,20 +81,20 @@ var __tyrano_key_config = {
     //ジェスチャー
     "gesture" : {
         "swipe_up_1" : {
-            "action" : "backlog"
+           // "action" : "backlog"
         },
         "swipe_left_1" : {
-            "action" : "auto"
+           // "action" : "auto"
         },
         "swipe_right_1" : {
-            "action" : "menu"
+           // "action" : "menu"
         },
         "swipe_down_1" : {
-            "action" : "load"
+           // "action" : "load"
         },
         
         "hold" : {
-            "action" : "skip",
+           // "action" : "skip",
         }
     }
 
