@@ -23,10 +23,17 @@
 [ptext name="chara_name_area" layer="message0" color="white" size=28 bold=true x=20 y=650]
 
 ;上記で定義した領域がキャラクターの名前表示であることを宣言（これがないと#の部分でエラーになります）
-[chara_config ptext="chara_name_area"]
-[chara_new  name="kenpei"  storage="chara/kenpei/normal.png" jname="憲兵" ]
-[chara_show  name="kenpei"  ]
+;[chara_config ptext="chara_name_area" time=800] 
+;[chara_new  name="kenpei"  storage="chara/kenpei/handsdown_normal.png" jname="憲兵" ]
+;[chara_face name="kenpei" face="handsdown_smile" storage="chara/kenpei/handsdown_smile.png" ]
+;[chara_face name="kenpei" face="handsdown_w" storage="chara/kenpei/handsdown_w.png" ]
+;[chara_face name="kenpei" face="sleeping" storage="chara/kenpei/sleeping.png" ] 
 
+
+[chara_show  name="kenpei"  ]
+;[playbgm storage="maou_bgm_healing12b.mp3" volume="30" restart="false" ]
+
+*scenestart
 [cm]
 
 ;タイトル画面のために一旦非表示にしたメッセージレイヤを再表示
@@ -35,31 +42,33 @@
 ;BGMの再生
 ;[playbgm storage="hanabi.ogg"]
 
-#憲兵
+#kenpei:handsdown_w_yoi
 なぁ、アンタ……[l][r]
 コイツで勝負しないか？[p]
 
 #
 いたずらっ子のような笑みを浮かべながら、憲兵はこちらを見つめる[p]
 手持ちの金が足りないとき、決まってこちらにギャンブルを持ちかけてくるのだ。[p]
-通常の飲食店なら断るところだが、[r][l]
-この店は賭場も兼ねており、客と従業員がゲームに興じるのは日常茶飯事だ。[p]
-娯楽の少ないこの世の中で、ここにいる間だけでも現実の辛い気分を紛らわせられる。[p]
-そんな場所にしたくて、私はこの店を続けている。[p]
-マスターとして、この誘いを断るわけにはいかない。[p]
+普通の店なら断るところだが、[r][l]
+この酒場は賭場も兼ねており、朝から晩まで客と従業員が”ゲーム”に興じている。[p]
+戦時下の世の中、この街で許された唯一の娯楽場だ。
+そのマスターとして、誘いを断るわけにはいかない。[p]
 
 #マスター
-よし、受けてたとう。[p]
+わかった。１回だけだぞ。[p]
 
+;コインゲーム初期設定
 [eval exp="f.money=30000"]
 
 [ptext layer="2" name="kenpeiname" x="30" y="30" size="40" text="憲兵："]
 [ptext layer="2" name="kenpeimoney" x="150" y="30" size="40" text="&f.money+' ORDO'"]
 
 [cm]
-
+;1ゲームスタート
 *game_start
 [cm]
+[chara_mod name=kenpei face=handsdown_normal_yoi cross=false]
+
 #
 どちらを選ぶ？[p]
 
@@ -115,17 +124,19 @@ f.isOmoteSelected = false
 
 #
 ...[p]
+
 [freeimage layer="1" ]
-[image layer="1" x="100" y="350" storage="../image/coin/coinomote.png" cond="f.isCoinOmote==true" time="500"]
-[image layer="1" x="100" y="350" storage="../image/coin/coinura.png" cond="f.isCoinOmote==false" time="500"]
+[image layer="1" x="160" y="350" storage="../image/coin/coinomote.png" cond="f.isCoinOmote==true" time="500"]
+[image layer="1" x="160" y="350" storage="../image/coin/coinura.png" cond="f.isCoinOmote==false" time="500"]
 
 #
 ...[p]
 [if exp="f.isMasterWin==true"]
-    #憲兵
+
+    #kenpei:handsdown_normal_yoi_yosomi
     ……アンタの勝ちだ。[p]
 [else]
-    #憲兵
+    #kenpei:handsdown_smile_yoi
     フッ、オレの勝ちだ。[p]
 [endif]
 [ptext layer="2" name="kenpeimoney" x="150" y="30" size="40" text="&f.money+' ORDO'" overwrite="true"]
@@ -137,17 +148,17 @@ f.isOmoteSelected = false
     憲兵はこれ以上手持ちの金がないようだ……[p]
 
     [jump target="*game_finished" ]
-[elseif exp="f.money>=0"]
+[elseif exp="f.money>=50000"]
     #
     手持ちの金がなくなってしまった……[p]
-    #憲兵
+    #kenpei:handsdown_smile
     またやろうな[p]
-[jump target="*game_finished" ]
+    [jump target="*game_finished" ]
 [else]
-    #憲兵
-    もう一回勝負するか？[l][r]
-    [link target="*game_start"]A.もうひと勝負！[endlink][r]
-    [link target="*game_finished"]B.やめておくよ[endlink][r]
+    #kenpei:handsdown_w_yoi
+    もう一回やろうぜ？[l][r]
+    [link target="*game_start"]A. しょうがないな……[endlink][r]
+    [link target="*game_finished"]B. もう十分だろ[endlink][r]
     [s]
 [endif]
 
@@ -156,11 +167,11 @@ f.isOmoteSelected = false
 [cm]
 
 [if exp="f.money<=20000"]
-    #憲兵
+    #kenpei:handsdown_normal_yoi
     今日はツケにしといてくれ……[p]
 [endif]
 
-#憲兵
+#kenpei:handsdown_smile_yoi
 じゃあ、また来るよ。[p]
 
 
@@ -174,9 +185,11 @@ f.isOmoteSelected = false
 
 ;[wait time=5000]
 
-[l][cm]
-最初に戻ります.[l]
+
 [chara_hide_all]
+
+#
+to be continued[l][cm]
 ;タイトルにジャンプする
 @jump storage="first.ks" 
 

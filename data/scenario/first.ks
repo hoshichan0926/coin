@@ -1,5 +1,13 @@
+
+
+
+
+
+
+
+
+
 [cm]
-@wait time=200
 
 ;メッセージウィンドウのサイズ調整
 ;[position top=700 width=600 height=200 layer=message0 vertical=false]
@@ -14,31 +22,40 @@
 ;文字スピード調整
 ;[delay speed=30]
 ;[cm]
-
+[loadcss file="./data/others/css/glink.css"]
+ 
 ;メッセージボックスを非表示にする
 @layopt layer=message0 page=fore visible=false
-@bg storage=cointoss.jpg
+
 
 [call target="*Sub_SetLayer"]
+[stopbgm]
+
+;キャラ定義
+[chara_config ptext="chara_name_area" time="0"] 
+[chara_new  name="kenpei"  storage="chara/kenpei/handsdown_normal.png" jname="憲兵" ]
+
+[chara_face name="kenpei" face="handsdown_niya_yoi_closedeye" storage="chara/kenpei/handsdown_niya_yoi_closedeye.png" ]
+[chara_face name="kenpei" face="handsdown_niya_yoi" storage="chara/kenpei/handsdown_niya_yoi.png" ]
+[chara_face name="kenpei" face="handsdown_normal_yoi_closedeye" storage="chara/kenpei/handsdown_normal_yoi_closedeye.png" ]
+[chara_face name="kenpei" face="handsdown_normal_yoi_yosomi" storage="chara/kenpei/handsdown_normal_yoi_yosomi.png" ]
+
+[chara_face name="kenpei" face="handsdown_normal_yoi" storage="chara/kenpei/handsdown_normal_yoi.png" ]
+[chara_face name="kenpei" face="handsdown_normal" storage="chara/kenpei/handsdown_normal.png" ]
+
+[chara_face name="kenpei" face="handsdown_smile_yoi" storage="chara/kenpei/handsdown_smile_yoi.png" ]
+[chara_face name="kenpei" face="handsdown_smile" storage="chara/kenpei/handsdown_smile.png" ]
+
+[chara_face name="kenpei" face="handsdown_w_yoi" storage="chara/kenpei/handsdown_w_yoi.png" ]
+[chara_face name="kenpei" face="handsdown_w" storage="chara/kenpei/handsdown_w.png" ]
+
+[chara_face name="kenpei" face="handsup_smile" storage="chara/kenpei/handsup_smile.png" ]
+
+[chara_face name="kenpei" face="sleeping" storage="chara/kenpei/sleeping.png" ] 
+
 
 [clearfix]
-[wait time="1000"]
-[glink x="200" y="220" text="序章" target="*introduction" color="white" ]
-[glink x="200" y="320" text="コインゲーム" target="*coingame" color="white" ]
-
-;[glink x="230" y="310" text="画家チュートリアル" target="*tutorial_gaka" color="white" ]
-
-[s]
-
-*introduction
-[jump storage="mainscene/introduction.ks"]
-
-*coingame
-; [jump]
-; ジャンプします。
-[jump storage="mainscene/playcoin.ks"]
-
-
+@jump storage="title.ks" 
 
 
 ; ~~サブルーチン~~

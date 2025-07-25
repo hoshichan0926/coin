@@ -24,9 +24,13 @@
 [ptext name="chara_name_area" layer="message0" color="white" size=28 bold=true x=20 y=650]
 
 ;上記で定義した領域がキャラクターの名前表示であることを宣言（これがないと#の部分でエラーになります）
-[chara_config ptext="chara_name_area"]
-[chara_new  name="kenpei"  storage="chara/kenpei/normal.png" jname="憲兵" ]
+;[chara_config ptext="chara_name_area"]
+;[chara_new  name="kenpei"  storage="chara/kenpei/handsdown_normal.png" jname="憲兵" ]
+;[chara_face name="kenpei" face="sleeping" storage="chara/kenpei/sleeping.png" ] 
+[chara_mod name="kenpei" face="sleeping"]
 [chara_show  name="kenpei"  ]
+
+;[playbgm storage="maou_bgm_healing12b.mp3" volume="30" restart="false" ]
 
 [l]
 
@@ -42,7 +46,7 @@
 ……[l][r]
 お客さん、起きてください。[p]
 
-#憲兵
+#kenpei:sleeping
 ……[l][r]
 むにゃむにゃ……[p]
 
@@ -75,6 +79,9 @@
 [cm]
 #マスター
 お客さん、閉店の時間ですよ。[p]
+[quake count=1 time=500 hmax=30 vmax=0 wait="false" ]
+
+;[anim name=kenpei left="-=10" time=1500 ]
 
 @jump target="mezame" 
 
@@ -83,27 +90,37 @@
 #マスター
 ………[p]
 
+[quake count=3 time=500 hmax=30 vmax=0 wait=false]
 #
 バチーーーーーンッ[p]
+
+#
 平手で憲兵の背中を引っ叩いた音が店内に響き渡った。[p]
 
 @jump target="mezame" 
 
 *mezame
+
 #憲兵
 ん………[p]
-ああ、マスター……[p]
+[chara_mod name="kenpei" face="handsdown_normal_yoi_closedeye" time=2000 ]
+[chara_mod name="kenpei" face="handsdown_normal_yoi" time=1000 ]
+
+ああ……[p]
 悪い……もうこんな時間か[p]
 
 #マスター
 本日のお会計はこちらでございます。[p]
 
-#憲兵
-わかった。[p]
+#kenpei
+ああ……[p]
+
+[chara_mod name="kenpei" face="handsdown_normal_yoi_yosomi" time=1000 ]
 
 #
-ゴソゴソと憲兵はポケットをまさぐっているが、どうも様子がおかしい。[p]
+ゴソゴソ[p]
+……憲兵はポケットをまさぐっているが、どうも様子がおかしい。[p]
 これはもしかして……[p]
 
-@jump storage="mainscene/playcoin.ks" 
+@jump storage="mainscene/playcoin.ks" target="scenestart" 
 [s]
