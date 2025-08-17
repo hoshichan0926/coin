@@ -19,8 +19,9 @@
 ;コインの表示レイヤー
 [layopt layer="2" visible="true"]
 
+
 ;キャラクターの名前が表示される文字領域
-[ptext name="chara_name_area" layer="message0" color="white" size=28 bold=true x=20 y=650]
+[ptext name="chara_name_area" layer="message0" color="white" shadow="0x000000" size=28 bold=true x=20 y=650]
 
 ;上記で定義した領域がキャラクターの名前表示であることを宣言（これがないと#の部分でエラーになります）
 [chara_config ptext="chara_name_area"]
@@ -78,7 +79,7 @@
 ……そうですか、お気をつけて。[p]
 
 #憲兵
-最近、街で盗難事件が多発しているからな。[r][l]
+最近、街で盗難事件が多発している。[r][l]
 アンタも戸締り気をつけろよ。[p]
 
 [chara_hide name="kenpei" time="1000"]
@@ -86,3 +87,6 @@
 #
 あのいつも飲んだくれている憲兵が真面目に巡回するなんて……[p]
 なにか事件の手掛かりでも掴んだのだろうか。[p]
+《あの方》に報告すべきか？[p]
+いや、こんな瑣末なことを報告してお手を煩わせるわけにはいかない。[p]
+だが、引き続きあの憲兵には目を光らせておいたほうがよさそうだ。[p]

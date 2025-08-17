@@ -20,7 +20,7 @@
 [layopt layer="2" visible="true"]
 
 ;キャラクターの名前が表示される文字領域
-[ptext name="chara_name_area" layer="message0" color="white" size=28 bold=true x=20 y=650]
+[ptext name="chara_name_area" layer="message0" color="white" shadow="0x000000" size=28 bold=true x=20 y=650]
 
 ;上記で定義した領域がキャラクターの名前表示であることを宣言（これがないと#の部分でエラーになります）
 [chara_config ptext="chara_name_area"]

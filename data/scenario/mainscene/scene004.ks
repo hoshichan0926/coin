@@ -1,6 +1,6 @@
 ;憲兵と庭師
 ;メッセージウィンドウのサイズ調整
-[position top=700 width=600 height=200 layer=message0 vertical=false]
+[ptext name="chara_name_area" layer="message0" color="white" shadow="0x000000" size=28 bold=true x=20 y=650]
 
 ;文字スピード調整
 ;[delay speed=30]

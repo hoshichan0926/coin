@@ -1,5 +1,8 @@
 
+
+[mask effect="fadeIn" time=100 folder="bgimage" graphic="../bgimage/blackbg.jpg"  ]
 ;メッセージウィンドウのサイズ調整
+;[position top=610 left=0 width=680 height=330 margin="90,30,30"layer=message0 vertical=false frame="graywindow.png" ]
 [position top=700 width=600 height=200 layer=message0 vertical=false]
 
 ;文字スピード調整
@@ -20,7 +23,7 @@
 [layopt layer="2" visible="true"]
 
 ;キャラクターの名前が表示される文字領域
-[ptext name="chara_name_area" layer="message0" color="white" size=28 bold=true x=20 y=650]
+[ptext name="chara_name_area" layer="message0" color="white" shadow="0x000000" size=28 bold=true x=20 y=650]
 
 ;上記で定義した領域がキャラクターの名前表示であることを宣言（これがないと#の部分でエラーになります）
 ;[chara_config ptext="chara_name_area" time=800] 
@@ -31,7 +34,8 @@
 
 
 [chara_show  name="kenpei"  ]
-;[playbgm storage="maou_bgm_healing12b.mp3" volume="30" restart="false" ]
+[image layer="1" storage="../image/glass/empty.png" name="emptyglass"]
+[mask_off time="500" wait="true"]
 
 *scenestart
 [cm]
@@ -49,19 +53,22 @@
 #
 いたずらっ子のような笑みを浮かべながら、憲兵はこちらを見つめる[p]
 手持ちの金が足りないとき、決まってこちらにギャンブルを持ちかけてくるのだ。[p]
+#マスター
+またですか……[p]
+#
 普通の店なら断るところだが、[r][l]
 この酒場は賭場も兼ねており、朝から晩まで客と従業員が”ゲーム”に興じている。[p]
 戦時下の世の中、この街で許された唯一の娯楽場だ。
 そのマスターとして、誘いを断るわけにはいかない。[p]
 
 #マスター
-わかった。１回だけだぞ。[p]
+はぁ……わかりました。１回だけですよ。[p]
 
 ;コインゲーム初期設定
 [eval exp="f.money=30000"]
 
-[ptext layer="2" name="kenpeiname" x="30" y="30" size="40" text="憲兵："]
-[ptext layer="2" name="kenpeimoney" x="150" y="30" size="40" text="&f.money+' ORDO'"]
+[ptext layer="2" name="kenpeiname" x="30" y="30" shadow="0x000000" size="40" text="憲兵："]
+[ptext layer="2" name="kenpeimoney" x="150" y="30" shadow="0x000000" size="40" text="&f.money+' ORDO'"]
 
 [cm]
 ;1ゲームスタート
@@ -82,6 +89,8 @@
 f.isOmoteSelected = true
 [endscript]
 
+[chara_mod name=kenpei face=handsdown_niya_yoi cross=false]
+
 #憲兵
 アンタは表、オレは裏だな。[p]
 
@@ -100,8 +109,8 @@ f.isOmoteSelected = false
 [cm]
 
 ;コイントスの画像
-[image layer="1" storage="../bgimage/cointoss.jpg" time="1000"]
-;[playse storage="coin-flip-37787.mp3" loop="false" ]
+[playse storage="チーン2" loop="false" ]
+[image layer="2" storage="../bgimage/cointoss.jpg" time="1000" name="cointoss"]
 
 [iscript]
     f.randNum = Math.random();
@@ -125,9 +134,9 @@ f.isOmoteSelected = false
 #
 ...[p]
 
-[freeimage layer="1" ]
-[image layer="1" x="160" y="350" storage="../image/coin/coinomote.png" cond="f.isCoinOmote==true" time="500"]
-[image layer="1" x="160" y="350" storage="../image/coin/coinura.png" cond="f.isCoinOmote==false" time="500"]
+[free layer="2" name="cointoss" ]
+[image layer="1" x="160" y="350" storage="../image/coin/coinomote.png" cond="f.isCoinOmote==true" time="500" name="coinomote"]
+[image layer="1" x="160" y="350" storage="../image/coin/coinura.png" cond="f.isCoinOmote==false" time="500" name="coinura"]
 
 #
 ...[p]
@@ -140,7 +149,8 @@ f.isOmoteSelected = false
     フッ、オレの勝ちだ。[p]
 [endif]
 [ptext layer="2" name="kenpeimoney" x="150" y="30" size="40" text="&f.money+' ORDO'" overwrite="true"]
-[freeimage layer="1" ]
+[free layer="1" name="coinomote" ]
+[free layer="1" name="coinura" ]
 
 [cm]
 [if exp="f.money<=0"]
@@ -151,14 +161,14 @@ f.isOmoteSelected = false
 [elseif exp="f.money>=50000"]
     #
     手持ちの金がなくなってしまった……[p]
-    #kenpei:handsdown_smile
+    #kenpei:handsdown_smile_yoi
     またやろうな[p]
     [jump target="*game_finished" ]
 [else]
     #kenpei:handsdown_w_yoi
     もう一回やろうぜ？[l][r]
-    [link target="*game_start"]A. しょうがないな……[endlink][r]
-    [link target="*game_finished"]B. もう十分だろ[endlink][r]
+    [link target="*game_start"]<A> あと一回だけですよ……[endlink][r]
+    [link target="*game_finished"]<B> もう十分でしょう[endlink][r]
     [s]
 [endif]
 
@@ -171,8 +181,12 @@ f.isOmoteSelected = false
     今日はツケにしといてくれ……[p]
 [endif]
 
+[wait time="1000" ]
+
 #kenpei:handsdown_smile_yoi
 じゃあ、また来るよ。[p]
+
+
 
 
 ;文字スピードを遅くする
@@ -185,13 +199,24 @@ f.isOmoteSelected = false
 
 ;[wait time=5000]
 
+[chara_hide name="kenpei" ]
 
-[chara_hide_all]
 
 #
-to be continued[l][cm]
+やれやれ……[p]
+毎日酒を飲んでは酔い潰れてフラフラと帰っていくが、大丈夫なのだろうか。[p]
+……私が考えても仕方のないことだ。[p]
+明日の準備をして、早く店を閉めよう。[p]
+
+[free layer="1" name="emptyglass"]
+[fadeoutbgm time=1500]
+;#
+;to be continued[l][cm]
+
 ;タイトルにジャンプする
-@jump storage="first.ks" 
+;@jump storage="first.ks" 
+
+@jump storage="mainscene/scene002.ks" 
 
 ; =======MEMO========
 ; [emb] 変数 f.xxx の中身をメッセージとして取り出します。

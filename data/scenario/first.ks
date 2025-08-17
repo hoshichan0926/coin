@@ -37,8 +37,13 @@
 
 [chara_face name="kenpei" face="handsdown_niya_yoi_closedeye" storage="chara/kenpei/handsdown_niya_yoi_closedeye.png" ]
 [chara_face name="kenpei" face="handsdown_niya_yoi" storage="chara/kenpei/handsdown_niya_yoi.png" ]
+[chara_face name="kenpei" face="handsdown_niya" storage="chara/kenpei/handsdown_niya.png" ]
+[chara_face name="kenpei" face="handsdown_niya_yosomi" storage="chara/kenpei/handsdown_niya_yosomi.png" ]
+
+
 [chara_face name="kenpei" face="handsdown_normal_yoi_closedeye" storage="chara/kenpei/handsdown_normal_yoi_closedeye.png" ]
 [chara_face name="kenpei" face="handsdown_normal_yoi_yosomi" storage="chara/kenpei/handsdown_normal_yoi_yosomi.png" ]
+[chara_face name="kenpei" face="handsdown_normal_yosomi" storage="chara/kenpei/handsdown_normal_yosomi.png" ]
 
 [chara_face name="kenpei" face="handsdown_normal_yoi" storage="chara/kenpei/handsdown_normal_yoi.png" ]
 [chara_face name="kenpei" face="handsdown_normal" storage="chara/kenpei/handsdown_normal.png" ]
@@ -50,6 +55,7 @@
 [chara_face name="kenpei" face="handsdown_w" storage="chara/kenpei/handsdown_w.png" ]
 
 [chara_face name="kenpei" face="handsup_smile" storage="chara/kenpei/handsup_smile.png" ]
+[chara_face name="kenpei" face="handsup_w_yosomi" storage="chara/kenpei/handsup_w_yosomi.png" ]
 
 [chara_face name="kenpei" face="sleeping" storage="chara/kenpei/sleeping.png" ] 
 
@@ -88,6 +94,7 @@
 [layopt layer="0" visible="true"]
 [layopt layer="1" visible="true"]
 [layopt layer="2" visible="true"]
+
 
 ; [return]
 ; [call]タグで呼ばれたところに帰ります。
